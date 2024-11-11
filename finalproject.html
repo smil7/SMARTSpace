@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>  
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.29.11.min.js"></script>  
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        .button-container { padding: 20px; text-align: center; }
+        .control-btn { width: 80%; margin-top: 15px; }
+    </style>
+</head>  
+<body>  
+    <div data-role="page">  
+        <div data-role="header" data-position="fixed">
+            <h1>IoT Smart Environmental Control System</h1>  
+        </div> 
+
+        <div data-role="main" class="ui-content">
+            <h2>Control the Environment</h2>
+            <p>Use the buttons below to control various devices and features of your smart system.</p>
+
+            <div class="button-container">
+                <!-- Take Photo Button -->
+                <button type="button" class="ui-btn ui-btn-b ui-corner-all control-btn" id="takePhotoBtn">
+                    <i class="ui-icon-camera"></i> Take Photo
+                </button>  
+
+                <!-- Rotate Motor Button -->
+                <button type="button" class="ui-btn ui-btn-b ui-corner-all control-btn" id="rotateMotorBtn">
+                    <i class="ui-icon-refresh"></i> Rotate Motor
+                </button>  
+
+                <!-- Adjust Temperature Button -->
+                <button type="button" class="ui-btn ui-btn-b ui-corner-all control-btn" id="adjustTempBtn">
+                    <i class="ui-icon-gear"></i> Adjust Temperature
+                </button>
+
+                <!-- Turn On/Off Lights Button -->
+                <button type="button" class="ui-btn ui-btn-b ui-corner-all control-btn" id="toggleLightsBtn">
+                    <i class="ui-icon-lightbulb"></i> Toggle Lights
+                </button>  
+
+                <!-- Trigger Alarm Button -->
+                <button type="button" class="ui-btn ui-btn-b ui-corner-all control-btn" id="triggerAlarmBtn">
+                    <i class="ui-icon-alert"></i> Trigger Alarm
+                </button>  
+            </div>
+        </div> 
+
+        <script>  
+            $(document).ready(function() {  
+                const channel = "zhang728";
+                
+                // Initialize PubNub
+                const pubnub = new PubNub({
+                    publishKey: 'pub-c-0b272594-2fff-4444-8caa-e3805919e43a',  
+                    subscribeKey: 'sub-c-45b7166c-104a-4ae1-9b67-953684902377',
+                    uuid: 'zhang728'
+                });
+
+                // Take Photo Button
+                $('#takePhotoBtn').click(function() {  
+                    pubnub.publish({
+                        channel: channel,
+                        message: { action: "takePhoto" }
+                    }, function(status, response) {
+                        if (status.error) {
+                            alert("Failed to send photo request. Please try again.");
+                        } else {
+                            alert("Photo request sent successfully!");
+                        }
+                    });
+                });
+
+                // Rotate Motor Button
+                $('#rotateMotorBtn').click(function() {  
+                    pubnub.publish({
+                        channel: channel,
+                        message: { action: "rotateMotor" }
+                    }, function(status, response) {
+                        if (status.error) {
+                            alert("Failed to send motor rotation request. Please try again.");
+                        } else {
+                            alert("Motor rotation request sent successfully!");
+                        }
+                    });
+                });
+
+                // Adjust Temperature Button
+                $('#adjustTempBtn').click(function() {  
+                    pubnub.publish({
+                        channel: channel,
+                        message: { action: "adjustTemperature", value: "optimal" }
+                    }, function(status, response) {
+                        if (status.error) {
+                            alert("Failed to send temperature adjustment request. Please try again.");
+                        } else {
+                            alert("Temperature adjustment request sent successfully!");
+                        }
+                    });
+                });
+
+                // Toggle Lights Button
+                $('#toggleLightsBtn').click(function() {  
+                    pubnub.publish({
+                        channel: channel,
+                        message: { action: "toggleLights" }
+                    }, function(status, response) {
+                        if (status.error) {
+                            alert("Failed to send lights toggle request. Please try again.");
+                        } else {
+                            alert("Lights toggle request sent successfully!");
+                        }
+                    });
+                });
+
+                // Trigger Alarm Button
+                $('#triggerAlarmBtn').click(function() {  
+                    pubnub.publish({
+                        channel: channel,
+                        message: { action: "triggerAlarm" }
+                    }, function(status, response) {
+                        if (status.error) {
+                            alert("Failed to send alarm trigger request. Please try again.");
+                        } else {
+                            alert("Alarm trigger request sent successfully!");
+                        }
+                    });
+                });
+            });
+        </script>  
+    </div>  
+</body>  
+</html>
+
