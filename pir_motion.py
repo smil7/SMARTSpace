@@ -1,4 +1,4 @@
-#  Osama, pls do not comment out other codes. it's used to avoid conflict and make it more accurate. I will work on that.
+#  Osama, pls do not delete the codes I comment out. it's used to avoid conflict and make it more accurate. I will work on that.
 
 #How to connect
 #VCC  → Pin 2 
