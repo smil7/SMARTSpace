@@ -9,7 +9,7 @@ console.log('after creating the variables');
 const sendSMS = async () => {
     const data = {
       to: '+16132522457', // Replace with the recipient's number
-      body: 'INTRUDER IS WITHIN YOUR HOUSE!!!', // Your SMS text
+      body: 'INTRUDER IS WITHIN YOUR HOME!!!', // Your SMS text
     };
   
     try {
@@ -30,7 +30,35 @@ const sendSMS = async () => {
     } catch (error) {
       console.error('Error connecting to server:', error);
     }
-  };
+};
+
+const sendEmail = async () => {
+    const msg = {
+        to: 'abdulghaniosama07@gmail.com', // Change to your recipient
+        from: 'tutorial2231@gmail.com', // Change to your verified sender
+        subject: 'IMPORTANT WARNING!!!',
+        text: 'INTRUDER IS WITHIN YOUR HOME!!!',
+    };
+
+    try {
+        const response = await fetch('http://localhost:5000/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(msg),
+        });
+    
+        const result = await response.json();
+        if (result.success) {
+          console.log('Email sent successfully!', result.message);
+        } else {
+          console.error('Failed to send Email:', result.error);
+        }
+      } catch (error) {
+        console.error('Error connecting to server:', error);
+      }
+};
 
 // Initialize PubNub
 const channel = "smily";
@@ -53,6 +81,7 @@ photo_button.addEventListener('click', function() {
             console.log('Photo captured!')
             // Send an sms
             sendSMS();
+            sendEmail();
         }
     });
 });
