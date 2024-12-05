@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const twilio = require('twilio');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+console.log(process.env.SENDGRID_API_KEY);
 
 const app = express();
 

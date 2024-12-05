@@ -13,6 +13,7 @@ const sendSMS = async () => {
     };
   
     try {
+        console.log('before fetching');
       const response = await fetch('http://localhost:5000/send-sms', {
         method: 'POST',
         headers: {
@@ -20,7 +21,7 @@ const sendSMS = async () => {
         },
         body: JSON.stringify(data),
       });
-  
+      console.log('after fethcing');
       const result = await response.json();
       if (result.success) {
         console.log('SMS sent successfully!', result.message);
@@ -61,17 +62,41 @@ const sendEmail = async () => {
 };
 
 // Initialize PubNub
-const channel = "smily";
+const channel_sending = "smily";
 const pubnub = new PubNub({
     publishKey: 'pub-c-eb38bccb-ad8b-4f13-a4c7-47776d9dbb8a',  
     subscribeKey: 'sub-c-620cd7f5-5e59-4989-b30e-277c71e0eda7',
 });
-console.log('osama');
+
+console.log('Starting to receive messages');
+
+
+pubnub.subscribe({
+    channels: ['smily']
+});
+
+pubnub.addListener({
+    // Messages
+    message: function (m) {
+      const received_msg = {
+        channelName: m.channel,
+        pubTT: m.timetoken,
+        msg: m.message,
+        publisher: m.publisher
+      }
+      console.log(received_msg);
+      if (received_msg.msg.action === 'alertTrigger'){
+        sendSMS();
+        sendEmail();
+      }
+    },
+});
+
 // Take Photo Button
 photo_button.addEventListener('click', function() { 
     console.log('Capturing a photo...') 
     pubnub.publish({
-        channel: channel,
+        channel: channel_sending,
         message: { action: "Capturing a photo..." }
     }, function(status, response) {
         if (status.error) {
@@ -89,7 +114,7 @@ photo_button.addEventListener('click', function() {
 // Rotate Motor Button
 rotate_motor_button.addEventListener('click', function() {  
     pubnub.publish({
-        channel: channel,
+        channel: channel_sending,
         message: { action: "rotateMotor" }
     }, function(status, response) {
         if (status.error) {
@@ -103,7 +128,7 @@ rotate_motor_button.addEventListener('click', function() {
 // Adjust Temperature Button
 adjust_temp_button.addEventListener('click', function() {  
     pubnub.publish({
-        channel: channel,
+        channel: channel_sending,
         message: { action: "adjustTemperature", value: "optimal" }
     }, function(status, response) {
         if (status.error) {
@@ -117,7 +142,7 @@ adjust_temp_button.addEventListener('click', function() {
 // Toggle Lights Button
 toggle_lights_button.addEventListener('click', function() {  
     pubnub.publish({
-        channel: channel,
+        channel: channel_sending,
         message: { action: "toggleLights" }
     }, function(status, response) {
         if (status.error) {
@@ -131,7 +156,7 @@ toggle_lights_button.addEventListener('click', function() {
 // Trigger Alarm Button
 trigger_alarm_button.addEventListener('click', function() {  
     pubnub.publish({
-        channel: channel,
+        channel: channel_sending,
         message: { action: "triggerAlarm" }
     }, function(status, response) {
         if (status.error) {
