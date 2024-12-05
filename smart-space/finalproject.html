@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css" />
+    <link rel="stylesheet" href="./src/styles.css">
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.6.min.js"></script>  
+    <script defer type="module" src="./src/smart-controlling.js"></script>
+</head>  
+<body>  
+    <div data-role="page">  
+        <div data-role="header" data-position="fixed">
+            <h1>IoT Smart Environmental Control System</h1>  
+        </div> 
+
+        <div data-role="main" class="ui-content">
+            <h2>Control the Environment</h2>
+            <p>Use the buttons below to control various devices and features of your smart system.</p>
+
+            <div class="button-container">
+                <!-- Take Photo Button -->
+                <button type="button" class="ui-btn ui-btn-b ui-corner-all control-btn" id="takePhotoBtn">
+                    <i class="ui-icon-camera"></i> Take Photo
+                </button>  
+
+                <!-- Rotate Motor Button -->
+                <button type="button" class="ui-btn ui-btn-b ui-corner-all control-btn" id="rotateMotorBtn">
+                    <i class="ui-icon-refresh"></i> Rotate Motor
+                </button>  
+
+                <!-- Adjust Temperature Button -->
+                <button type="button" class="ui-btn ui-btn-b ui-corner-all control-btn" id="adjustTempBtn">
+                    <i class="ui-icon-gear"></i> Adjust Temperature
+                </button>
+
+                <!-- Turn On/Off Lights Button -->
+                <button type="button" class="ui-btn ui-btn-b ui-corner-all control-btn" id="toggleLightsBtn">
+                    <i class="ui-icon-lightbulb"></i> Toggle Lights
+                </button>  
+
+                <!-- Trigger Alarm Button -->
+                <button type="button" class="ui-btn ui-btn-b ui-corner-all control-btn" id="triggerAlarmBtn">
+                    <i class="ui-icon-alert"></i> Trigger Alarm
+                </button>  
+            </div>
+        </div> 
+    </div>  
+</body>  
+</html>
+
