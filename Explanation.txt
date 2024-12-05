@@ -1,0 +1,13 @@
+run part 1.py on raspberry pi,it must be in the same folder with husylib.py 
+run part 2.py on raspberry pi
+
+
+Alternative for part 2:
+
+run arduino.py in raspberry pi,
+download windowControl into your Arduino,
+This code listens to serial commands (opens window and closes window) issued by Raspberry Pi and moves servos accordingly.
+
+
+ 
+
