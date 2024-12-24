@@ -8,7 +8,7 @@ console.log('after creating the variables');
 
 const sendSMS = async () => {
     const data = {
-      to: '+16132522457', // Replace with the recipient's number
+      to: '', // Replace with the recipient's number
       body: 'INTRUDER IS WITHIN YOUR HOME!!!', // Your SMS text
     };
   
@@ -35,8 +35,8 @@ const sendSMS = async () => {
 
 const sendEmail = async () => {
     const msg = {
-        to: 'abdulghaniosama07@gmail.com', // Change to your recipient
-        from: 'tutorial2231@gmail.com', // Change to your verified sender
+        to: '', // Change to your recipient
+        from: '', // Change to your verified sender
         subject: 'IMPORTANT WARNING!!!',
         text: 'INTRUDER IS WITHIN YOUR HOME!!!',
     };
@@ -62,17 +62,17 @@ const sendEmail = async () => {
 };
 
 // Initialize PubNub
-const channel_sending = "smily";
+const channel_sending = "";
 const pubnub = new PubNub({
-    publishKey: 'pub-c-eb38bccb-ad8b-4f13-a4c7-47776d9dbb8a',  
-    subscribeKey: 'sub-c-620cd7f5-5e59-4989-b30e-277c71e0eda7',
+    publishKey: '',  
+    subscribeKey: '',
 });
 
 console.log('Starting to receive messages');
 
 
 pubnub.subscribe({
-    channels: ['smily']
+    channels: ['']
 });
 
 pubnub.addListener({
