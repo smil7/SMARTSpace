@@ -23,6 +23,9 @@ By Running this command, it should provide you with a local host link that enabl
 ## Hardware
 The "Explanation.txt" file explains how to run the files that are related to the hardware components which are connected to Raspberry Pi 4.
 
+## Smoking Image Classification task
+To further enhance the capability of the project, we decided to add an additional feature where the device can detect smokers that are smoking within the enviroment and notify the user. This feature hasn't been completely implemented to the device. We just trained a VGG16 model on a dataset found in Kaggle (https://www.kaggle.com/datasets/sujaykapadnis/smoking).
+
 ## Future Plans
 •	Designing and building a database that stores the new registered users and checks if weather the user is logging in are already registered.
 
