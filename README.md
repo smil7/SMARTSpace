@@ -1,6 +1,11 @@
 # SMARTSpace
 SMARTSpace is an IoT Smart Environmental Control System capable of monitoring, adjusting, and securing a given space such as home or offices. 
 
+## Architecture Overview
+![image](https://github.com/user-attachments/assets/de607e1f-fbe9-4e4e-bab7-df190ab1f0bc)
+
+Reading the below description, you will notice that there aren't any explanation or step-by-step guide of how the sensors are connected to the Raspberry Pi 4. We decided to leave this to the reader who decided to expand on our project.
+
 ## Backend
 A simple backend is designed using NodeJS with the Express framework.
 
@@ -14,3 +19,12 @@ To run the front-end successfully as well, you need to download vite. Vite is a 
 `npm run dev`
 
 By Running this command, it should provide you with a local host link that enables you to interact with the user interface.
+
+## Hardware
+The "Explanation.txt" file explains how to run the files that are related to the hardware components which are connected to Raspberry Pi 4.
+
+## Future Plans
+•	Designing and building a database that stores the new registered users and checks if weather the user is logging in are already registered.
+•	Connecting more microcontrollers and mechanical arms to manage and handle the windows limitations.
+•	Training an Object Detection Model on the same dataset to be able to track the person in live feed video using the Pi Camera.
+•	Quantisize the size of the model to be able to be installed on the Raspberry Pi. 
