@@ -11,8 +11,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const accountSid = 'AC664274fdccb8d3af224a9cb68388b096';
-const authToken = '3e49094861c62c3db89d4635d6130f74';
+const accountSid = '[Add your own account Sid]';
+const authToken = '[Add your own authentication token]';
 const client = twilio(accountSid, authToken);
 
 app.post('/send-sms', async (req, res) => {
@@ -21,7 +21,7 @@ app.post('/send-sms', async (req, res) => {
   try {
     const message = await client.messages.create({
       body: body,
-      from: '+16812305992', // Your Twilio number
+      from: '', // Your Twilio number
       to: to,
     });
     res.json({ success: true, message: message.sid });
