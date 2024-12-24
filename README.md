@@ -25,6 +25,9 @@ The "Explanation.txt" file explains how to run the files that are related to the
 
 ## Future Plans
 •	Designing and building a database that stores the new registered users and checks if weather the user is logging in are already registered.
+
 •	Connecting more microcontrollers and mechanical arms to manage and handle the windows limitations.
+
 •	Training an Object Detection Model on the same dataset to be able to track the person in live feed video using the Pi Camera.
+
 •	Quantisize the size of the model to be able to be installed on the Raspberry Pi. 
